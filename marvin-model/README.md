@@ -1,5 +1,7 @@
 #  Instructions to run the wake word model trained on the word "Marvin" on a raspberry pi
 
+## Instructions to train the Marvin model
+
 - Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz
 
 - Extract the zip folder and place it in the same location as the clone.
