@@ -1,18 +1,18 @@
 import sounddevice as sd
 import numpy as np
-import scipy.signal
-import timeit
 import python_speech_features
 from tensorflow.keras import models
-debug_time = 1
-word_threshold = 0.8
+
+word_threshold = 0.5
 rec_duration = 0.5
 window_stride = 0.5
 sample_rate = 8000
 num_channels = 1
 num_mfcc = 16
-model_path = 'wakword_with_background.h5'
+model_path = 'wake_word_marvin_model_with_background_trained_on_all.h5'
+
 window = np.zeros(int(rec_duration * sample_rate) * 2)
+
 model = models.load_model(model_path)
 
 def sd_callback(rec, frames, time, status):
@@ -51,7 +51,7 @@ def sd_callback(rec, frames, time, status):
     if val > word_threshold:
         print('activated')
     else:
-        print(val)
+        print(val[0][0])
 
 with sd.InputStream(channels=num_channels,
                     samplerate=sample_rate,
