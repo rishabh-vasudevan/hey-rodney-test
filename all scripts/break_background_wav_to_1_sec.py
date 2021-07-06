@@ -19,7 +19,7 @@ def make_multiple_1_sec_clips(path):
 
     os.remove(path)
 
-location_of_background_noise = '/home/rishabh/testing wake word/background_1_sec/_background_noise_'
+location_of_background_noise = 'speech_command_dataset/_background_noise_'
 
 background_files = gfile.glob(location_of_background_noise+'/*.wav')
 

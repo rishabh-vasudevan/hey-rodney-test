@@ -6,7 +6,7 @@ import numpy as np
 import python_speech_features
 from tensorflow.keras import models
 import pandas as pd
-model_filename = 'wakword_with_background.h5'
+model_filename = 'test_wake_word_marvin_model.h5'
 dataset_path = 'test-dataset'
 for name in listdir(dataset_path):
     if isdir(join(dataset_path, name)):
