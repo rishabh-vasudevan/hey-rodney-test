@@ -3,7 +3,6 @@ from os.path import isdir, join
 import librosa
 import random
 import numpy as np
-import matplotlib.pyplot as plt
 import python_speech_features
 import tensorflow_io as tfio
 from tensorflow.keras import layers, models, Sequential
