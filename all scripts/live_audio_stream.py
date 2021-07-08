@@ -9,7 +9,7 @@ window_stride = 0.5
 sample_rate = 8000
 num_channels = 1
 num_mfcc = 16
-model_path = 'wake_word_marvin_model_with_background_trained_on_all.h5'
+model_path = 'wake_word_model.h5'
 
 window = np.zeros(int(rec_duration * sample_rate) * 2)
 

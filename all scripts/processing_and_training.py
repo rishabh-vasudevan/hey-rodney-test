@@ -11,7 +11,7 @@ from tensorflow.keras import regularizers
 from tensorflow.io import gfile
 import tensorflow as tf
 
-dataset_path = './speech_command_dataset'
+dataset_path = '/app/speech_command_dataset'
 
 all_targets = [name for name in listdir(dataset_path) if isdir(join(dataset_path, name))]
 
@@ -19,15 +19,15 @@ all_targets.remove('_background_noise_')
 
 target_list = all_targets
 feature_sets_file = 'mfcc_with_background.npz'
-perc_keep_samples = 0.4 # amount of sample ( for eg. 0.4 will only use 40% of the sample therefore it will reduce the audio processing time)
+perc_keep_samples = 1.0 # amount of sample ( for eg. 0.4 will only use 40% of the sample therefore it will reduce the audio processing time)
 val_ratio = 0.1
 test_ratio = 0.1
 sample_rate = 8000
 num_mfcc = 16
 len_mfcc = 16
 
-tflite_model_filename = 'wake_word_marvin_tflite.tflite'
-model_filename = 'test_wake_word_marvin_model.h5'
+tflite_model_filename = 'wake_word_model_tflite.tflite'
+model_filename = 'wake_word_model.h5'
 wake_word = 'marvin'
 
 multiply_number = 20 #number of times you want to multiply the occurances of the wake word ( this is there to remove the negative bias )
