@@ -1,3 +1,34 @@
+"""
+This file is based on
+01-speech-commands-mfcc-extraction.ipynb and 02-speech-commands-mfcc-classifier.ipynb file available on the github page of Shawn Hymel (https://github.com/ShawnHymel/tflite-speech-recognition)
+
+The code was licensed under Beerware (https://en.wikipedia.org/wiki/Beerware)
+
+Algorithm modified and changes made:
+
+1. overlap of backgroud sound to increase accuracy when there is background noise, the background noise is selected at ramdom and overlapped with the wav files at different volumes randomly selected.
+
+2. Changed the training model and also added dropout and regularization.
+
+3. Added a multiplicity factor to remove the negative bias of the data.( also mixed with different backgound noise will in a way increase the positive data as whenever the same wav file is repeated it gets overlapped with a ramdom background noise ).
+
+4. Added part to convert the .h5 model to tflite.
+
+5. Mixed both ipynb file to one py file to make it easier to run.
+
+6. Removed parts of the script which were not necessary for processing and training.
+
+Information:
+
+This file processes the wav files and converts them into MFCC's and then those MFCC's are used to train the wake word model.
+
+The model is stored in the form of an .h5 file.
+
+It is also later stored in the form of .tflite file.
+
+
+"""
+
 from os import listdir
 from os.path import isdir, join
 import librosa

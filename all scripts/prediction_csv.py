@@ -1,3 +1,15 @@
+"""
+Parts of this file is based on
+01-speech-commands-mfcc-extraction.ipynb file available on the github page of Shawn Hymel (https://github.com/ShawnHymel/tflite-speech-recognition)
+
+The code was licensed under Beerware (https://en.wikipedia.org/wiki/Beerware)
+
+
+Parts Used:
+
+The processing of the wav files to MFCC.
+"""
+
 from os import listdir
 from os.path import isdir, join
 import librosa
@@ -6,7 +18,7 @@ import numpy as np
 import python_speech_features
 from tensorflow.keras import models
 import pandas as pd
-model_filename = 'wake_word_model.h5
+model_filename = 'wake_word_model.h5'
 dataset_path = 'test-dataset'
 for name in listdir(dataset_path):
     if isdir(join(dataset_path, name)):
@@ -101,7 +113,7 @@ model = models.load_model(model_filename)
 y_predictions = []
 for i in range(len(x_test)):
     prediction_from_model = model.predict(np.expand_dims(x_test[i],0))
-    if prediction_from_model > 0.35:
+    if prediction_from_model > 0.5:
         prediction = 1
     else:
         prediction = 0
