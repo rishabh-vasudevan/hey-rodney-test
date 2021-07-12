@@ -1,4 +1,4 @@
-# Instructions to train the wake word model and run it
+# Instructions to train the wake word model
 
 ## Run the training with Docker
 
