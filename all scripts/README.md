@@ -26,3 +26,20 @@
 ## To run prediction on live audio stream
 
 - Run the `live_audio_stream.py` file
+
+
+## Train the model using Docker
+
+- Clone the repo
+
+- Build the docker image
+
+```
+docker build -t processing-and-training .
+```
+ 
+- Mount the folder which contains the `speech_command_dataset` folder to the `/app` folder in the docker contianer
+
+```
+docker run -it -v "$(pwd)":/app processing-and-training
+```
