@@ -57,11 +57,15 @@ docker run -it -v "$(pwd)":/app processing-and-training
 
 - Place the wav files containing the wake word in the positive folder and all the other files in negative ( Taking input in different folder to print the actual ans in the excel sheet )
 
+- If you have not already installed all the python dependencies then run `pip install -r requirements.txt`
+
 - Run the `prediction_csv.py`
 
 - The output will be a csv file with three colums, the colums are index, actual_ans, predicted_ans
 
 ## Run prediction on live audio stream
+
+- If you have not already installed all the python dependencies then run `pip install -r requirements.txt`
 
 - Run the `live_audio_stream.py` file
 
