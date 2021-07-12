@@ -59,7 +59,7 @@ len_mfcc = 16
 
 tflite_model_filename = 'wake_word_model_tflite.tflite'
 model_filename = 'wake_word_model.h5'
-wake_word = 'marvin'
+wake_word = input("### Enter the wake word you want to train on ( Make sure there is a folder with the same name in the speech_command_dataset folder )\n")
 
 multiply_number = 20 #number of times you want to multiply the occurances of the wake word ( this is there to remove the negative bias )
 
