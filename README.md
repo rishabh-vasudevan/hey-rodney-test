@@ -7,7 +7,7 @@
 - Build the docker image
 
 ```
-docker build -t processing-and-training .
+docker build -t processing-and-training -f Dockerfile.training .
 ```
  
 - Mount the folder which contains the `speech_command_dataset` folder to the `/app` folder in the docker contianer
