@@ -1,0 +1,18 @@
+# Docker file for prediction on wav files
+# The output will be in the form of a csv file
+
+from python:3.8-buster
+
+WORKDIR /app
+
+WORKDIR /run
+
+ADD prediction_csv.py .
+
+ADD requirements.txt .
+
+RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc libsndfile1
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "/run/prediction_csv.py"]
