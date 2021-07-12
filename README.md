@@ -80,7 +80,23 @@ docker build -t csv_prediction -f Dockerfile.prediction_csv .
 
 ## Run prediction on live audio stream
 
+### Run live audio classification with Docker
+
+- Build the docker image using the command 
+```
+docker build -t live_stream_classification -f Dockerfile.live_classification .
+```
+
+- To run the container use the following command
+```
+docker run -it -v "$(pwd)":/app --device /dev/snd:/dev/snd live_stream_classification
+```
+  __Note :__ The `--device /dev/snd:/dev/snd` is used to connect the host microphone with the docker container 
+
+### Run live audio classification without Docker
+
 - If you have not already installed all the python dependencies then run `pip install -r requirements.txt`
 
-- Run the `live_audio_stream.py` file
+- Run the `live_audio_stream.py` file <br> <br>
+  __Note :__ Some operating systems don't allow to take microphone input at 8000Khz, in that case try to run it with docker.
 
