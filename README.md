@@ -13,6 +13,7 @@ docker build -t processing-and-training -f Dockerfile.training .
 - Mount the folder which contains the `speech_command_dataset` folder to the `/app` folder in the docker contianer
 - It will breakdown the background noises to 1 sec long wav files if it is not already broken down
 - It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
+- To run the docker container write the following command
 
 ```
 docker run -it -v "$(pwd)":/app processing-and-training
@@ -56,6 +57,20 @@ docker run -it -v "$(pwd)":/app processing-and-training
 - Create a new folder with the name `test-dataset` and make two more folders inside it with the name `positive` and `negative`
 
 - Place the wav files containing the wake word in the positive folder and all the other files in negative ( Taking input in different folder to print the actual ans in the excel sheet )
+
+### Run Prediction with Docker
+
+- Build the docker image using the command 
+```
+docker build -t csv_prediction -f Dockerfile.prediction_csv .
+```
+- To run the docker container write the following command
+```
+ sudo docker run -it -v "$(pwd)":/app csv_prediction
+```
+- The output will be a csv file with three colums, the colums are index, actual_ans, predicted_ans
+
+### Run prediction without Docker
 
 - If you have not already installed all the python dependencies then run `pip install -r requirements.txt`
 
