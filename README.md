@@ -61,7 +61,7 @@ docker run -it -v "$(pwd)":/app processing-and-training
 
 - The output will be a csv file with three colums, the colums are index, actual_ans, predicted_ans
 
-## To run prediction on live audio stream
+## Run prediction on live audio stream
 
 - Run the `live_audio_stream.py` file
 
