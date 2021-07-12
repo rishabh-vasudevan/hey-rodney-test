@@ -19,10 +19,13 @@ def make_multiple_1_sec_clips(path):
 
     os.remove(path)
 
-location_of_background_noise = 'speech_command_dataset/_background_noise_'
+location_of_background_noise = '/app/speech_command_dataset/_background_noise_'
 
 background_files = gfile.glob(location_of_background_noise+'/*.wav')
 
-for i in background_files:
-#     print(i)
-    make_multiple_1_sec_clips(i)
+if len(background_files) < 350:
+    print("Breaking background files to 1 sec long clips")
+    for i in background_files:
+        make_multiple_1_sec_clips(i)
+else:
+    print("Skipped breaking background files as they are already 1 sec long")
