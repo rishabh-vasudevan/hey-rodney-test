@@ -1,4 +1,8 @@
-# Instructions to train the wake word model
+# Train a wake word model
+
+## About
+
+  This project allows you to make a wake word detection model. This repository contains scripts to train the model and also run inference/prediction. Implementation of live audio classification is also available
 
 ## Run the training with Docker
 
