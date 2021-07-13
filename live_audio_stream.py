@@ -45,13 +45,18 @@ def sd_callback(rec, frames, time, status):
     x_test = np.array(x_test)
     x_test = x_test.reshape(x_test.shape[0],x_test.shape[1],1)
 
-    val = model.predict(np.expand_dims(x_test,0))
+
+    pred = np.expand_dims(x_test,0)
+
+    val = model(pred,training = False)
 
 
     if val > word_threshold:
         print('activated')
     else:
         print(val[0][0])
+
+
 
 with sd.InputStream(channels=num_channels,
                     samplerate=sample_rate,
