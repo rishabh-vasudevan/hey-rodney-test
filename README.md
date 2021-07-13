@@ -4,11 +4,17 @@
 
   This project allows you to make a wake word detection model. This repository contains scripts to train the model and also run inference/prediction. Implementation of live audio classification is also available
 
-## Run the training with Docker
+## Train the wake word model
 
 - Clone the repository
 
-- Build the docker image
+- Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz 
+
+- Make a new folder with the name `speech_command_dataset` and extract the zip file inside this folder
+
+### Run the training with Docker
+
+- Build the docker image using the command
 
 ```
 docker build -t processing-and-training -f Dockerfile.training .
@@ -16,30 +22,29 @@ docker build -t processing-and-training -f Dockerfile.training .
  
 - Mount the folder which contains the `speech_command_dataset` folder to the `/app` folder in the docker contianer
 - It will breakdown the background noises to 1 sec long wav files if it is not already broken down
-- It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
+
 - To run the docker container write the following command
 
 ```
 docker run -it -v "$(pwd)":/app processing-and-training
 ```
+- It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
 
 
-## Run the training without Docker
-- Clone the repository
-
-- Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz 
-
-- Make a new folder with the name `speech_command_dataset` and extract the zip file inside this folder
+### Run the training without Docker
 
 - Run the command `pip install -r requirements.txt` to download all the python dependencies
 
 - Run the `break_background_wav_to_1_sec.py` to break the all the wav files into 1 sec long wav files.( Only run this file once, Do not rerun if the wav files are already broken down into 1 sec long clips )
 
-- Set the wake word you want to train the model on, you can change it in `processing_and_training.py` by changing the value of the variable `wake_word` on line 62 to the preffered wake word ( Preset to the word "Mavin", if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
-
 - Run the `processing_and_training.py` file to do the initial processing and training
 
+- It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
+
+__Note :__ Some of the files in the speech command dataset are shorter or longer than 1 sec . Therefore some of the files are dropped during the time of processing ( wav files should be exactly 1 sec long )
 ## Add word directory in the speech_command_dataset
+
+If you want to use a word which is not already present in the `speech_command_dataset` then you will have to add that word in `speech_command_dataset`. You can do so by following these steps.
 
 - Create a directory inside the `speech_command_dataset` with the name of preffered wake word
 
@@ -52,6 +57,9 @@ docker run -it -v "$(pwd)":/app processing-and-training
    | __Sample Rate__ | 16 KHz  |
    | __Number of Channels__ | 1 |
    | __Encoding__ | Signed 16-bit PCM |
+   | __length__ | 1 sec |
+
+- You can use 3rd party software like Audacity for the recording purpose.
 
 - After completing these steps you can train the model using the same steps given above
 
