@@ -4,7 +4,9 @@
 
   This project allows you to make a wake word detection model. This repository contains scripts to train the model and also run inference/prediction. Implementation of live audio classification is also available
 
-## Run the training with Docker
+## Train the wake word model
+
+### Run the training with Docker
 
 - Clone the repository
 
@@ -24,7 +26,7 @@ docker run -it -v "$(pwd)":/app processing-and-training
 ```
 
 
-## Run the training without Docker
+### Run the training without Docker
 - Clone the repository
 
 - Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz 
