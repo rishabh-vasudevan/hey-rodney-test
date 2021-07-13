@@ -6,9 +6,13 @@
 
 ## Train the wake word model
 
-### Run the training with Docker
-
 - Clone the repository
+
+- Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz 
+
+- Make a new folder with the name `speech_command_dataset` and extract the zip file inside this folder
+
+### Run the training with Docker
 
 - Build the docker image using the command
 
@@ -18,20 +22,16 @@ docker build -t processing-and-training -f Dockerfile.training .
  
 - Mount the folder which contains the `speech_command_dataset` folder to the `/app` folder in the docker contianer
 - It will breakdown the background noises to 1 sec long wav files if it is not already broken down
-- It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
+
 - To run the docker container write the following command
 
 ```
 docker run -it -v "$(pwd)":/app processing-and-training
 ```
+- It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
 
 
 ### Run the training without Docker
-- Clone the repository
-
-- Download the Speech Command dataset folder from : https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz 
-
-- Make a new folder with the name `speech_command_dataset` and extract the zip file inside this folder
 
 - Run the command `pip install -r requirements.txt` to download all the python dependencies
 
@@ -42,6 +42,8 @@ docker run -it -v "$(pwd)":/app processing-and-training
 - It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
 
 ## Add word directory in the speech_command_dataset
+
+If you want to use a word which is not already present in the `speech_command_dataset` then you will have to add that word in `speech_command_dataset`. You can do so by following these steps.
 
 - Create a directory inside the `speech_command_dataset` with the name of preffered wake word
 
