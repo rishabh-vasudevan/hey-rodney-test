@@ -41,6 +41,7 @@ docker run -it -v "$(pwd)":/app processing-and-training
 
 - It will ask for the wake word you want to train on, you can input the wake word here ( Make sure it is the same as one of the directories present in the speech command dataset, if your preffered wake word is not present then follow instructions given below to add word directory to the speech_command_dataset )
 
+__Note :__ Some of the files in the speech command dataset are shorter or longer than 1 sec . Therefore some of the files are dropped during the time of processing ( wav files should be exactly 1 sec long )
 ## Add word directory in the speech_command_dataset
 
 If you want to use a word which is not already present in the `speech_command_dataset` then you will have to add that word in `speech_command_dataset`. You can do so by following these steps.
@@ -56,6 +57,9 @@ If you want to use a word which is not already present in the `speech_command_da
    | __Sample Rate__ | 16 KHz  |
    | __Number of Channels__ | 1 |
    | __Encoding__ | Signed 16-bit PCM |
+   | __length__ | 1 sec |
+
+- You can use 3rd party software like Audacity for the recording purpose.
 
 - After completing these steps you can train the model using the same steps given above
 
