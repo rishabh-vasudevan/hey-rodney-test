@@ -10,7 +10,7 @@
 
 - Clone the repository
 
-- Build the docker image
+- Build the docker image using the command
 
 ```
 docker build -t processing-and-training -f Dockerfile.training .
