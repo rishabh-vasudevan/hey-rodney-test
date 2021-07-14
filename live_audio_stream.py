@@ -51,7 +51,7 @@ def sd_callback(rec, frames, time, status):
     val = model(pred,training = False)
 
 
-    if val > 0.5:
+    if val > 0.95:
         print('activated')
     else:
         print(val[0][0])
