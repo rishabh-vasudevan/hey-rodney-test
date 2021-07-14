@@ -1,3 +1,8 @@
+"""
+This file has been authored by : Rishabh Vasudevan github:rishabh-vasudevan
+
+This file is licensed under APL-2(Apache 2)
+"""
 from os import listdir
 from os.path import isdir, join
 import librosa

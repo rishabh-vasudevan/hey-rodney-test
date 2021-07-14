@@ -1,3 +1,8 @@
+"""
+This file has been authored by : Rishabh Vasudevan github:rishabh-vasudevan
+
+This file is licensed under APL-2(Apache 2)
+"""
 import sounddevice as sd
 import numpy as np
 import python_speech_features
@@ -5,32 +10,24 @@ from tensorflow.keras import models
 from scipy.io.wavfile import write
 import uuid
 
-recording_freq = 16000
-recording_duration = 5
-word_threshold = 0.75
-rec_duration = 0.5
-window_stride = 0.5
-sample_rate = 8000
-num_channels = 1
-num_mfcc = 16
-model_path = 'wake_word_model.h5'
 
-window = np.zeros(int(rec_duration * sample_rate) * 2)
+model_path = '/app/wake_word_model.h5'
 
 model = models.load_model(model_path)
 
+recording_window = np.zeros(8000)
+
 def record():
     print("activated")
-    recording = sd.rec(int(recording_duration * recording_freq),
-                   samplerate=recording_freq, channels=2)
+    recording = sd.rec(80000,
+                   samplerate=16000, channels=2)
     sd.wait()
 
     unique_filename = str(uuid.uuid4())
 
-    write(unique_filename + ".wav", recording_freq, recording)
+    write(unique_filename + ".wav", 16000, recording)
 
     print("Recording saved")
-
 
 def sd_callback(rec, frames, time, status):
 
@@ -40,14 +37,14 @@ def sd_callback(rec, frames, time, status):
     rec = np.squeeze(rec)
 
 
-    window[:len(window)//2] = window[len(window)//2:]
-    window[len(window)//2:] = rec
+    recording_window[:len(recording_window)//2] = recording_window[len(recording_window)//2:]
+    recording_window[len(recording_window)//2:] = rec
 
-    mfccs = python_speech_features.base.mfcc(window,
-                                        samplerate=sample_rate,
+    mfccs = python_speech_features.base.mfcc(recording_window,
+                                        samplerate=8000,
                                         winlen=0.256,
                                         winstep=0.050,
-                                        numcep=num_mfcc,
+                                        numcep=16,
                                         nfilt=26,
                                         nfft=2048,
                                         preemph=0.0,
@@ -68,14 +65,13 @@ def sd_callback(rec, frames, time, status):
     val = model(pred,training = False)
 
 
-    if val > word_threshold:
+    if val > 0.5:
         record()
 
 
-
-with sd.InputStream(channels=num_channels,
-                    samplerate=sample_rate,
-                    blocksize=int(sample_rate * rec_duration),
+with sd.InputStream(channels=1,
+                    samplerate=8000,
+                    blocksize=4000,
                     callback=sd_callback):
     while True:
         pass
