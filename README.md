@@ -61,6 +61,8 @@ If you want to use a word which is not already present in the `speech_command_da
 
 - You can use 3rd party software like Audacity for the recording purpose.
 
+- Update the value of `multiply_number` in `processing_and_training.py` on line number 46 so that `number of samples in your word directory * multiply_number = around 40,000` This process is used to multiply your samples as they usually are very less compared to the whole dataset. ( This step is there to remove the negative bias of the data )
+
 - After completing these steps you can train the model using the same steps given above
 
 
