@@ -43,6 +43,8 @@ from tensorflow.io import gfile
 import tensorflow as tf
 
 dataset_path = '/app/speech_command_dataset'
+multiply_number = 20 #number of times you want to multiply the occurances of the wake word ( this is there to remove the negative bias )
+
 
 all_targets = [name for name in listdir(dataset_path) if isdir(join(dataset_path, name))]
 
@@ -68,7 +70,6 @@ while check:
     else:
         wake_word = input("### The wake word that you entered is not present in speech_command_dataset, please re-enter a word that is present in the speech_command_dataset\n")
 
-multiply_number = 20 #number of times you want to multiply the occurances of the wake word ( this is there to remove the negative bias )
 
 filenames = []
 y = []
