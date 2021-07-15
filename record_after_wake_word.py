@@ -17,8 +17,11 @@ model = models.load_model(model_path)
 
 recording_window = np.zeros(8000)
 
+print("Listening for wake word")
+
 def record():
-    print("activated")
+    print("activated\n")
+    print("recording")
     recording = sd.rec(80000,
                    samplerate=16000, channels=2)
     sd.wait()
@@ -27,7 +30,9 @@ def record():
 
     write(unique_filename + ".wav", 16000, recording)
 
-    print("Recording saved")
+    print("Recording saved\n")
+    print("Listening for wake word")
+
 
 def sd_callback(rec, frames, time, status):
 
