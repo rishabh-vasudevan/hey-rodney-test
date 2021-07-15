@@ -9,7 +9,7 @@ import numpy as np
 import python_speech_features
 from tensorflow.keras import models
 
-model_path = '/app/wake_word_model.h5'
+model_path = 'wake_word_model.h5'
 
 model = models.load_model(model_path)
 

@@ -7,12 +7,15 @@ WORKDIR /app
 
 WORKDIR /run
 
-ADD prediction_csv.py .
-
-ADD requirements.txt .
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc libsndfile1
 
+ADD requirements.txt .
+
 RUN pip install -r requirements.txt
+
+ADD prediction_csv.py .
+
+WORKDIR /app
 
 CMD ["python", "/run/prediction_csv.py"]

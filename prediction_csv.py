@@ -122,4 +122,4 @@ for i in range(len(x_test)):
 dict = {'index':[i for i in range(len(x_test))],'actual_ans':y_test, 'predicted_ans': y_predictions}
 df = pd.DataFrame(dict)
 
-df.to_csv('/app/predictions.csv')
+df.to_csv('predictions.csv')

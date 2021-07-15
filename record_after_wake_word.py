@@ -11,7 +11,7 @@ from scipy.io.wavfile import write
 import uuid
 
 
-model_path = '/app/wake_word_model.h5'
+model_path = 'wake_word_model.h5'
 
 model = models.load_model(model_path)
 
